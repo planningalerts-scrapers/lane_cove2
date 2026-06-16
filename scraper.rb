@@ -21,6 +21,7 @@ class Scraper
   def self.run
     agent = Mechanize.new
     agent.agent.set_proxy(ENV["MORPH_AUSTRALIAN_PROXY"]) if ENV["MORPH_AUSTRALIAN_PROXY"]
+    agent.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
     page = agent.get(BASE_URL)
     bodypanel = page.at("div#bodypanel1")
